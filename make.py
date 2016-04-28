@@ -71,50 +71,6 @@ class LangDef:
 	def end(self):
 		self.code += self.foot
 
-class LangManager:
-
-	def __init__(self):
-		self.langs = []
-
-	def addLang(self, lang):
-		self.langs.append(lang)
-
-	def newLine(self):
-		for lang in self.langs:
-			lang.newLine()
-
-	def createVar(self, name, type, value):
-		for lang in self.langs:
-			lang.createVar(name, type, value)
-
-	def setVar(self, name, value):
-		for lang in self.langs:
-			lang.setVar(name, value)
-
-	def outputString(self, text):
-		for lang in self.langs:
-			lang.outputString(text)
-
-	def outputVar(self, name):
-		for lang in self.langs:
-			lang.outputVar(name)
-
-	def startFor(self, name, size):
-		for lang in self.langs:
-			lang.startFor(name, size)
-
-	def endFor(self):
-		for lang in self.langs:
-			lang.endFor()
-
-	def mathFunc(self, varname, name, args):
-		for lang in self.langs:
-			lang.mathFunc(varname, name, args)
-
-	def end(self):
-		for lang in self.langs:
-			lang.end()
-
 indexFile = open("langs/index.txt", "r")
 index = indexFile.read().split("\n")
 indexFile.close()
@@ -127,41 +83,26 @@ for l in index:
 		sourceCodes.append(langFile.read())
 		langFile.close()
 
-manager = LangManager()
+langs = []
 
 for sourceCode in sourceCodes:
-	manager.addLang(LangDef(sourceCode))
+	langs.append(LangDef(sourceCode))
 
 codeFile = open(sys.argv[1], "r")
-code = codeFile.read().split("\n")
+code = codeFile.read().replace("\\", "\\\\").split("\n")
 codeFile.close()
 
 for line in code:
 	if(not line == ""):
-		parts = line.split(" ")
-		if(parts[0] == "crv"):
-			manager.createVar(parts[1], parts[2], parts[3])
-		elif(parts[0] == "stv"):
-			manager.setVar(parts[1], parts[2])
-		elif(parts[0] == "mth"):
-			manager.mathFunc(parts[1], parts[2], parts[3])
-		elif(parts[0] == "for"):
-			manager.startFor(parts[1], parts[2])
-		elif(parts[0] == "edl"):
-			manager.endFor()
-		elif(parts[0] == "ots"):
-			manager.outputString(parts[1])
-		elif(parts[0] == "otv"):
-			manager.outputVar(parts[1])
-		else:
-			print("-----------SYNTAX ERROR------------")
-			print("Line: " + line)
-			print("Unknown command: " + parts[0] + "\n-----------------------------------\n")
-			exit()
 
-manager.end()
+		parts = line.split(" ", 1)
+		for lang in langs:
+			exec("lang." + parts[0] + "(" + parts[1] + ")")
 
-for lang in manager.langs:
+for lang in langs:
+	lang.end()
+
+for lang in langs:
 	nameParts = lang.name.split(" ")
 	print("Writting " + nameParts[0] + "!")
 	codeOut = open(nameParts[1], "w")

@@ -1,1 +1,1 @@
-ots Hello!\n
+outputString "Hello!\n"
