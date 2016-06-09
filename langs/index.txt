@@ -1,3 +1,11 @@
+<langs>
 cpp.tl
-java.tl
-python.tl
+</langs>
+
+<funcs>
+print value
+var type name value
+setvar name value
+</funcs>
+
+<dest>test</dest>
