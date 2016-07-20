@@ -1,4 +1,5 @@
 # Multi-Language-Benchmark-Generator
-These python scripts will use the user provided .tl files to generate instructions on how to use the information in the .ts file to generate source code for multiple languages then compile and run them. This software will then time how long each language takes to compile and to run the program and other information in the future. I created this for use to compare different languages in speed and any other aspects.
+This software uses alot of configuration files to generate functionally identical source code for multiple languages using using function definitions the user provides and a central code file that contains the description of the functionallity of the code to be generated.
+
 ###Note
-currently the software is in a pre-alpha stage. This doesn't resemble the planned state for later version, but is instead a proof of concept.
+Currently the software is in a pre-alpha stage so bugs and lack of features are plentyful. The current interface and stgructure of the configuration files is going to resemble the final version. This is subject to change.
