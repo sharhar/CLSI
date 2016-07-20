@@ -1,8 +1,5 @@
-print#"Hello, world!\n"
-var#int#age#0
-var#int#age1#13
-var#int#age2#14
-
-setvar#age#12
-setvar#age1#152
-setvar#age2#134566
+var#int#number#40
+setvar#number#120
+print#"Number="
+print#number
+print#"\n"

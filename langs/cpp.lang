@@ -2,13 +2,13 @@
 <file>CppTest.cpp</file>
 
 <funcs>
-	<print>printf($value);</print>
+	<print>std::cout << $value;</print>
 	<var>$type $name = $value;</var>
 	<setvar>$name = $value;</setvar>
 </funcs>
 
 <head>
-#include <stdio.h>
+#include <iostream>
 
 int main() {
 </head>

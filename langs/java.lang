@@ -1,0 +1,28 @@
+<name>Java</name>
+<file>JavaTest.java</file>
+
+<funcs>
+	<print>System.out.print($value);</print>
+	<var>$type $name = $value;</var>
+	<setvar>$name = $value;</setvar>
+</funcs>
+
+<head>
+public class JavaTest  {
+	public static void main(String[] args) {
+</head>
+
+<foot>
+	}
+}
+</foot>
+
+<comp>
+cd test
+javac JavaTest.java
+</comp>
+
+<run>
+cd test
+java JavaTest
+</run>
