@@ -2,9 +2,9 @@
 <file>CppTest.cpp</file>
 
 <funcs>
-	<print>printf(value);</print>
-	<var>type name = value;</var>
-	<setvar>name = value;</setvar>
+	<print>printf($value);</print>
+	<var>$type $name = $value;</var>
+	<setvar>$name = $value;</setvar>
 </funcs>
 
 <head>
