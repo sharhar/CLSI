@@ -39,13 +39,13 @@ class Lang:
 
 
 
-indexFile = open("langs/index.txt", "r")
-index = indexFile.read()
-indexFile.close()
+settingsFile = open("settings.txt", "r")
+settings = settingsFile.read()
+settingsFile.close()
 
-dest = getContents(index, "dest")
-srcs = getContents(index, "langs")
-funcsRaw = getContents(index, "funcs")
+dest = getContents(settings, "dest")
+srcs = getContents(settings, "langs")
+funcsRaw = getContents(settings, "funcs")
 
 idxFuncs = []
 
@@ -57,7 +57,7 @@ langs = []
 
 for l in srcs.split("\n"):
 	if not l == "":
-		file = open("langs/" + l, "r")
+		file = open(l, "r")
 		rawText = file.read()
 		file.close()
 		langs.append(Lang(rawText, idxFuncs))

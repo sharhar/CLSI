@@ -17,3 +17,14 @@ int main() {
 return 0;
 }
 </foot>
+
+<comp>
+cd test
+g++ -c CppTest.cpp
+g++ CppTest.o -o CppTest
+</comp>
+
+<run>
+cd test
+./CppTest
+</run>

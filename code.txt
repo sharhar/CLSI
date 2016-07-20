@@ -1,1 +1,8 @@
-print # "Hello, world!\n"
+print#"Hello, world!\n"
+var#int#age#0
+var#int#age1#13
+var#int#age2#14
+
+setvar#age#12
+setvar#age1#152
+setvar#age2#134566
