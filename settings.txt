@@ -1,12 +1,26 @@
 <langs>
 langs/cpp.lang
 langs/java.lang
+langs/ruby.lang
 </langs>
 
 <funcs>
 print value
 var type name value
 setvar name value
+sin name value
+cos name value
+tan name value
+for name start end
+end
 </funcs>
 
 <dest>test</dest>
+
+<fnOpen>(</fnOpen>
+<fnClose>)</fnClose>
+
+<seperator>,</seperator>
+
+<varPrefix>$</varPrefix>
+<varSufix></varSufix>

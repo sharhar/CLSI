@@ -8,12 +8,15 @@ end
 
 class Lang
 
-	def initialize(src, indexFuncs)
+	def initialize(src, indexFuncs, varPrefix, varSufix)
 		@src = src
 		@body = ""
 		@head = getContents(src, "head")
 		@foot = getContents(src, "foot")
 		@dest = getContents(src, "file")
+		@varPrefix = varPrefix
+		@varSufix = varSufix
+		@indent = ""
 
 		@funcs = Hash.new()
 
@@ -27,13 +30,23 @@ class Lang
 	end
 
 	def func(name, varDict)
+		if (name == "add_indent")
+			@indent += "\t"
+			return
+		end
+
+		if(name == "sub_indent" && @indent.length > 0) 
+			@indent.slice!(0)
+			return
+		end
+
 		result = @funcs[name]
 
 		for var in varDict.keys()
-			result = result.sub("$" + var, varDict[var])
+			result = result.gsub("$" + var, varDict[var])
 		end
 
-		@body += (result + "\n")
+		@body += (@indent + result + "\n")
 	end
 
 	def write(dest)
@@ -45,11 +58,18 @@ class Lang
 
 end
 
-contents = IO.read("settings.txt")
+settingsFile = File.new("settings.txt", "r")
+settings = settingsFile.read()
+settingsFile.close()
 
-dest = getContents(contents, "dest")
-srcs = getContents(contents, "langs")
-funcsRaw = getContents(contents, "funcs")
+dest = getContents(settings, "dest")
+srcs = getContents(settings, "langs")
+funcsRaw = getContents(settings, "funcs")
+fnOpen = getContents(settings, "fnOpen")
+fnClose = getContents(settings, "fnClose")
+seperator = getContents(settings, "seperator")
+varPrefix = getContents(settings, "varPrefix")
+varSufix = getContents(settings, "varSufix")
 
 idxFuncs = Array.new()
 
@@ -63,8 +83,10 @@ langs = Array.new()
 
 for l in srcs.split("\n")
 	if not l == ""
-		rawText = IO.read(l)
-		langs.push(Lang.new(rawText, idxFuncs))
+		file = File.new(l, "r")
+		rawText = file.read()
+		file.close()
+		langs.push(Lang.new(rawText, idxFuncs, varPrefix, varSufix))
 	end
 end
 
@@ -80,19 +102,25 @@ codeFile.close()
 
 for line in code.split("\n")
 	if line != ""
-		parts = line.split("#")
+		parts = line.split(fnOpen)
 		name = parts[0]
+
+		argStart = line.index(fnOpen)+1
+		argEnd = line.index(fnClose)
+
+		fnArgs = line[argStart, argEnd-argStart]
+		pArgs = fnArgs.split(seperator)
 
 		varDict = Hash.new()
 
-		i = 1
-		while i < parts.length do
-			varDict.store(idxFuncsDictTemplate[name.sub(" ", "")][i], parts[i])
+		i = 0
+		while i < pArgs.length do
+			varDict.store(idxFuncsDictTemplate[name.gsub(" ", "")][i+1], pArgs[i])
 			i = i + 1
 		end
 
 		for l in langs
-			l.func(name.sub(" ", ""), varDict)
+			l.func(name.gsub(" ", ""), varDict)
 		end
 	end
 end

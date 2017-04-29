@@ -34,17 +34,22 @@ times = Array.new()
 
 i = 0
 while i < comps.length do
-	command = ""
+	cmdArr = Array.new()
+
+	cmd = "cd test;"
 
 	for line in comps[i].split("\n")
-		if line != ""
-			command += line + ";"
+		if line.lstrip().rstrip().length > 0
+			cmd += line.gsub("\r", "")
+			cmd += ";"
 		end
 	end
 
 	puts("Compiling " + names[i] + "...")
 	startTime = Time.now()
-	system(command)
+	if(command.length > 0)
+		system(command)
+	end
 	endTime = Time.now()
 
 	times.push(names[i] + ": " + ((endTime - startTime)*1000).to_s())

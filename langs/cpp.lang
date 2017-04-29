@@ -5,10 +5,16 @@
 	<print>std::cout << $value;</print>
 	<var>$type $name = $value;</var>
 	<setvar>$name = $value;</setvar>
+	<sin>$name = sin($value);</sin>
+	<cos>$name = cos($value);</cos>
+	<tan>$name = tan($value);</tan>
+	<for>for(int $name = $start; $name < $end;$name++) {</for>
+	<end>}</end>
 </funcs>
 
 <head>
 #include <iostream>
+#include <math.h>
 
 int main() {
 </head>
@@ -19,12 +25,10 @@ return 0;
 </foot>
 
 <comp>
-cd test
 g++ -c CppTest.cpp
 g++ CppTest.o -o CppTest
 </comp>
 
 <run>
-cd test
 ./CppTest
 </run>

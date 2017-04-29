@@ -1,5 +1,17 @@
-var#int#number#40
-setvar#number#120
-print#"Number="
-print#number
-print#"\n"
+add_indent()
+var(int, number, 40)
+setvar(number, 120)
+print("Number=")
+print(number)
+print("\n")
+
+var(double, result, 0)
+for(i, 0, 2000000)
+add_indent()
+sin(result, i)
+cos(result, i)
+tan(result, i)
+sub_indent()
+end()
+
+sub_indent()

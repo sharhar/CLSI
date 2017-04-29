@@ -5,6 +5,11 @@
 	<print>System.out.print($value);</print>
 	<var>$type $name = $value;</var>
 	<setvar>$name = $value;</setvar>
+	<sin>$name = Math.sin($value);</sin>
+	<cos>$name = Math.cos($value);</cos>
+	<tan>$name = Math.tan($value);</tan>
+	<for>for(int $name = $start; $name < $end;$name++) {</for>
+	<end>}</end>
 </funcs>
 
 <head>
@@ -18,11 +23,9 @@ public class JavaTest  {
 </foot>
 
 <comp>
-cd test
 javac JavaTest.java
 </comp>
 
 <run>
-cd test
 java JavaTest
 </run>

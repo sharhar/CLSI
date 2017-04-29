@@ -1,0 +1,25 @@
+<name>Ruby</name>
+<file>RubyTest.rb</file>
+
+<funcs>
+	<print>print $value</print>
+	<var>$name = $value</var>
+	<setvar>$name = $value</setvar>
+	<sin>$name = Math.sin($value)</sin>
+	<cos>$name = Math.cos($value)</cos>
+	<tan>$name = Math.tan($value)</tan>
+	<for>for $name in $start..$end</for>
+	<end>end</end>
+</funcs>
+
+<head>
+</head>
+
+<foot>
+</foot>
+
+<comp></comp>
+
+<run>
+ruby RubyTest.rb
+</run>
