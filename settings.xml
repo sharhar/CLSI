@@ -1,7 +1,7 @@
 <langs>
-langs/cpp.lang
-langs/java.lang
-langs/ruby.lang
+langs/cpp.xml
+langs/java.xml
+langs/ruby.xml
 </langs>
 
 <funcs>

@@ -20,7 +20,7 @@ int main() {
 </head>
 
 <foot>
-return 0;
+	return 0;
 }
 </foot>
 
